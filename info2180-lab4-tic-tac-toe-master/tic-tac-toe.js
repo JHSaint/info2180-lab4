@@ -22,13 +22,13 @@ function makePlay(e){
             e.target.innerHTML = "X";
             e.target.classList.add("X");
 
-        }else if(state[counter] == "O"){
+        }else if(state[counter] == "O" && e.target.innerHTML == ""){
             state.push("X");
             counter--;
             e.target.innerHTML = "X";
             e.target.classList.add("X");
 
-        }else if(state[counter] == "X"){
+        }else if(state[counter] == "X" && e.target.innerHTML == ""){
             state.push("O");
             counter++;
             e.target.innerHTML = "O";
