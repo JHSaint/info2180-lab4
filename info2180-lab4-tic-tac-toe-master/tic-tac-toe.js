@@ -12,7 +12,20 @@ function boardSetup(){
 
 }
 
+function highlight (e){
+    var board = document.getElementById("board")
+    var boardSections = board.getElementsByTagName("div");
 
+    if(e.target.classList.contains("square") == true){
+        for(i=0; i<boardSections.length;i++){
+            boardSections[i].classList.remove("hover");
+        }
+        e.target.classList.add("hover");
+    }
+
+
+
+}
 function makePlay(e){
 
     if(e.target.nodeName == "DIV"){
@@ -42,6 +55,7 @@ window.onload = function(){
     
     boardSetup();
     console.log(board);
+    board.addEventListener("mouseover", highlight);
     board.addEventListener("click",makePlay);
 }
 
