@@ -1,9 +1,11 @@
 var winner = 0;
+var w = "";
 var state =[""];
 var totalS = [["","",""],["","",""],["","",""]];
 
 function boardSetup(){
 
+    var game = document.getElementById("game");
     var board = document.getElementById("board");
     var boardSections = board.getElementsByTagName("div");
 
@@ -96,7 +98,7 @@ function diagonalCheck(){
 
 
 function checkWin(){
-    let w = "";
+    
 
     if(winner == 0){
         w = rowCheck();
@@ -124,7 +126,7 @@ function makePlay(e){
 
     var board = document.getElementById("board")
     var boardSections = board.getElementsByTagName("div");
-    var l = 0;
+    let l = 0;
 
     if(e.target.nodeName == "DIV"){l
 
@@ -144,9 +146,8 @@ function makePlay(e){
             e.target.classList.add("O");
         }
 
-        
-        for(i = 0; i <3; i++){
-            for(j = 0; j <3; j++){
+        for(let i = 0; i <3; i++){
+            for(let j = 0; j <3; j++){
                 totalS[i][j] = boardSections[l];
                 l++;
             }
@@ -159,11 +160,46 @@ function makePlay(e){
 function reset(e){
     var board = document.getElementById("board")
     var boardSections = board.getElementsByTagName("div");
-    var l = 0;
+    
+    let l = 0;
 
-    if(e.target.classList.contains("btn") == true){
-        state[0] == "";
+
+    if(e.target.nodeName === 'BUTTON'){
         
+        let status = document.getElementById("status");
+        state[0] = "";
+        w = "";
+        winner = 0;
+
+        for (const key in boardSections) {
+            if (boardSections.hasOwnProperty(key)) {
+                const element = boardSections[key];
+                
+
+                if(element.classList.contains("X")){
+                    element.innerHTML= "";
+                    element.classList.remove("X");
+                }
+
+                
+                if(element.classList.contains("O")){
+                    element.innerHTML= "";
+                    element.classList.remove("O");
+                }
+
+            }
+        }
+
+
+        status.innerHTML = "Move your mouse over a square and click to play an X or an O.";
+        status.classList.remove("you-won"); 
+
+        for(let i = 0; i <3; i++){
+            for(let j = 0; j <3; j++){
+                totalS[i][j] = "";
+                l++;
+            }
+        }
     }
 
 
@@ -174,6 +210,6 @@ window.onload = function(){
     boardSetup();
     board.addEventListener("mouseover", highlight);
     board.addEventListener("click",makePlay);
-    //board.addEventListener("click",reset);
+    game.addEventListener("click",reset);
 }
 
