@@ -1,6 +1,5 @@
 var winner = 0;
 var state =[""];
-var counter =0;
 var totalS = [["","",""],["","",""],["","",""]];
 
 function boardSetup(){
@@ -134,15 +133,13 @@ function makePlay(e){
             e.target.innerHTML = "X";
             e.target.classList.add("X");
 
-        }else if(state[counter] == "O" && e.target.innerHTML == ""){
-            state.push("X");
-            counter--;
+        }else if(state[0] == "O" && e.target.innerHTML == ""){
+            state[0] = "X";
             e.target.innerHTML = "X";
             e.target.classList.add("X");
 
-        }else if(state[counter] == "X" && e.target.innerHTML == ""){
-            state.push("O");
-            counter++;
+        }else if(state[0]== "X" && e.target.innerHTML == ""){
+            state[0] = "O";
             e.target.innerHTML = "O";
             e.target.classList.add("O");
         }
@@ -159,10 +156,24 @@ function makePlay(e){
     }
 }
 
+function reset(e){
+    var board = document.getElementById("board")
+    var boardSections = board.getElementsByTagName("div");
+    var l = 0;
+
+    if(e.target.classList.contains("btn") == true){
+        state[0] == "";
+        
+    }
+
+
+}
+
 window.onload = function(){
 
     boardSetup();
     board.addEventListener("mouseover", highlight);
     board.addEventListener("click",makePlay);
+    //board.addEventListener("click",reset);
 }
 
