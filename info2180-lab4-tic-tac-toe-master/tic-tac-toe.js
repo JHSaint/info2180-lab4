@@ -18,6 +18,7 @@ function highlight (e){
     var board = document.getElementById("board");
     var boardSections = board.getElementsByTagName("div");
 
+
     if(e.target.classList.contains("square") == true){
         for(i=0; i<boardSections.length;i++){
             boardSections[i].classList.remove("hover");
@@ -98,8 +99,7 @@ function diagonalCheck(){
 
 
 function checkWin(){
-    
-
+     
     if(winner == 0){
         w = rowCheck();
         if(w == ""){
@@ -128,7 +128,8 @@ function makePlay(e){
     var boardSections = board.getElementsByTagName("div");
     let l = 0;
 
-    if(e.target.nodeName == "DIV"){l
+    console.log(e.target.nodeName);
+    if(e.target.classList.contains("square") == true){l
 
         if(state[0] == ""){
             state[0] = "X";
@@ -186,7 +187,6 @@ function reset(e){
                     element.innerHTML= "";
                     element.classList.remove("O");
                 }
-
             }
         }
 
@@ -201,8 +201,6 @@ function reset(e){
             }
         }
     }
-
-
 }
 
 window.onload = function(){
